@@ -1,0 +1,141 @@
+1. BMI (Body Mass Index)
+
+Official Meaning: Body Mass Index (BMI).
+
+Values (Encoding): Continuous numerical value (e.g., 24, 28, 32.5).
+
+UI Note: Keep doing what we planned—ask for height/weight and calculate this in the background.
+
+2. Age (Age Group)
+
+Official Meaning: 13-level age category.
+
+Values (Encoding): Integers 1 to 13.
+
+1 = 18-24
+
+2 = 25-29
+
+3 = 30-34
+
+4 = 35-39
+
+5 = 40-44
+
+6 = 45-49
+
+7 = 50-54
+
+8 = 55-59
+
+9 = 60-64
+
+10 = 65-69
+
+11 = 70-74
+
+12 = 75-79
+
+13 = 80 or older
+
+Backend Note: You will need a simple Python function to convert the user's raw age (from the Streamlit slider) into one of these 13 integer buckets before passing it to the model.
+
+3. GenHlth (General Health)
+
+Official Meaning: Would you say that in general your health is: (scale of 1-5).
+
+Values (Encoding): * 1 = Excellent
+
+2 = Very Good
+
+3 = Good
+
+4 = Fair
+
+5 = Poor
+
+4. HighBP (High Blood Pressure)
+
+Official Meaning: Adults who have been told they have high blood pressure by a doctor, nurse, or other health professional.
+
+Values (Encoding): 0 = No, 1 = Yes.
+
+5. HighChol (High Cholesterol)
+
+Official Meaning: Have you EVER been told by a doctor, nurse or other health professional that your blood cholesterol is high?
+
+Values (Encoding): 0 = No, 1 = Yes.
+
+6. PhysActivity (Physical Activity)
+
+Official Meaning: Adults who reported doing physical activity or exercise during the past 30 days other than their regular job.
+
+Values (Encoding): 0 = No, 1 = Yes.
+
+7. Smoker (Smoking Status)
+
+Official Meaning: Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes].
+
+Values (Encoding): 0 = No, 1 = Yes.
+
+8. DiffWalk (Difficulty Walking)
+
+Official Meaning: Do you have serious difficulty walking or climbing stairs?
+
+Values (Encoding): 0 = No, 1 = Yes.
+
+
+🟢 LOW RISK (< 0.3)
+
+Reasoning:
+- Recall very high (~93–97%)
+- False negatives extremely low
+- Model confident user is likely non-diabetic
+
+User Meaning:
+You are unlikely to have diabetes based on current indicators.
+
+Message:
+Your health indicators are within a safe range. Continue maintaining a healthy lifestyle.
+
+
+🟡 MODERATE RISK (0.3 – 0.5)
+
+Reasoning:
+- F2 score peak (~0.59–0.60)
+- Best balance between recall and precision
+- Model uncertain but signals present
+
+User Meaning:
+Early signs of potential risk are present.
+
+Message:
+Some early indicators detected. Improving lifestyle habits can help reduce future risk.
+
+
+🟠 ELEVATED RISK (0.5 – 0.7)
+
+Reasoning:
+- Precision improving (~0.31–0.36)
+- Recall still strong
+- Model leaning toward positive prediction
+
+User Meaning:
+Your indicators suggest increased risk, but not definitive.
+
+Message:
+Elevated indicators detected. A routine medical checkup is recommended.
+
+
+🔴 PRIORITY SCREENING (> 0.7)
+
+Reasoning:
+- Highest precision (~0.43)
+- Strongest available signal
+- Still not diagnostic due to false positives
+
+User Meaning:
+Your profile strongly aligns with diabetes risk indicators.
+
+Message:
+Strong screening signal detected. Please consult a healthcare provider for proper testing.
