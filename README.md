@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://ininsighthealth-ai.streamlit.app/">
-    <img src="https://img.shields.io/badge/🚀%20Launch%20App-InsightHealth%20AI-blue?style=for-the-badge&logo=streamlit" />
+    <img src="https://img.shields.io/badge/🚀%20Launch%20App-InsightHealth%20AI-lime?style=for-the-badge&logo=streamlit" />
   </a>
 </p>
 
@@ -60,7 +60,7 @@ Predictive modeling in digital health faces specific challenges regarding trust 
 
 ### 3. LLM Pipeline Engineering
 
-* **Primary Inference:** Gemini 1.5 Flash for nuanced health coaching and reasoning.
+* **Primary Inference:** Gemini/Gemma for nuanced health coaching and reasoning.
 * **Fallback Logic:** Automated switch to Gemma models via a custom error-handling wrapper to ensure zero downtime during API limit hits.
 
 ---
@@ -93,11 +93,9 @@ InsightHealth_AI/
 ├── src/
 │   ├── ml_core.py      # Prediction and SHAP logic
 │   └── insights.py     # LLM integration & fallback architecture
-├── artifacts/
-│   ├── best_model.joblib
-│   └── features.joblib
-└── notebooks/
-    └── diabetes.ipynb  # EDA and model training
+│── best_model.joblib
+│── features.joblib
+└── diabetes.ipynb  # EDA and model training
 ```
 
 ---
